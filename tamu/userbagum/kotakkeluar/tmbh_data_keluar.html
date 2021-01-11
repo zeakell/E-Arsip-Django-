@@ -1,0 +1,111 @@
+{%  extends 'userbagum/main.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card position-relative">
+                        <div class="card-body">
+                            <!-- <h4 class="card-title"><span>Hi Mr. {{user.first_name}} {{user.last_name}} </span></h4> -->
+                            <br>
+                            <div>
+                                <h1 class="title" align="center">Surat Keluar</h1>
+                            </div>
+                            <br>
+
+                            <form  action="svkotakkeluar" enctype="multipart/form-data" method="POST">
+                                <div class="container">
+                                    {% csrf_token %}
+
+                                        <div class="card-body">
+                                        <table class="table table-hover"><tr><td>
+                                        <fieldset>
+
+                                    <label for="Nomor_surat">Nomor Surat:</label>
+                                    <input type="text" name="Nomor_surat" id="Nomor_surat" class="form-control" required/>
+                        
+                                    <br>
+                                    <label>Tanggal:</label>
+                                    <input type="date" name="Tanggal_surat" id="Tanggal_surat" class="form-control" required/>
+                                    
+                                    <br>
+                                    <label for="kt">Kategori</label>
+                                    <select class="form-control" name="Kategori" required>
+                                        <option value=""></option>
+                                        <option value="Biasa">Biasa</option>
+                                        <option value="Segera">Segera</option>
+                                        <option value="Mendesak">Mendesak</option>
+                                    </select>
+                        
+                                    <br>
+                                        <label for="kl">Klasifikasi</label>
+                                            <select class="form-control" name="Klasifikasi" required>
+                                                <option value=""></option>
+                                                <option value="Biasa">Biasa</option>
+                                                <option value="Khusus">Khusus</option>
+                                                <option value="Kilat">Kilat</option>
+                                            </select>
+
+                                    <br>
+                                    <label>Tujuan :</label>
+                                    <select name="Tujuan" id="Tujuan" class="form-control" required/>
+                                        <option value=""></option>
+                                        {% for a in aa %}
+                                            <option value="{{a.nm_pejabat}}">{{a.nm_pejabat}}</option>
+                                        {% endfor %}  
+                                    </select>
+
+                                        </fieldset>
+                                        </td><td>
+                                        <fieldset>
+
+                                    <br>        
+                                    <label>Tembusan :</label>
+                                    <input type="text" name="Tembusan" id="Tembusan" class="form-control" required/>
+
+                                    <br>
+                                    <label>Perihal:</label>
+                                    <textarea type="text" name="Perihal" rows="5" id="Perihal" class="form-control" required></textarea>
+
+                                    <br>
+                                    <label>Attachment:</label>
+                                    <input type="file" name="Attachment" id="Attachment" class="form-control" required />
+
+                                    <input type="hidden" name="st_arsip" value="False">
+
+                                    <br><br>
+                                    <div align="center">
+                                        <a class="btn btn-danger" href="{% url 'shkotakkeluar' %}" title="Kembali ke halaman sebelumnya">
+                                            <span class="ti-back-left">
+                                                <text>
+                                                    Kembali
+                                                </text>
+                                            </span>
+                                        </a>
+                                        <!-- <a href="{% url 'shkotakmasuk' %}" class="btn btn-danger">kembali </a> -->
+                                        <button type="submit" class="btn btn-success" name="submit" title="Simpan surat masuk">
+                                            <span class="ti-plus">
+                                                <text>
+                                                    Simpan
+                                                </text>
+                                            </span>
+                                        </button>
+                                    </div>
+                                    
+                                    </fieldset>
+                                    </td></table>
+                                    </div>
+
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

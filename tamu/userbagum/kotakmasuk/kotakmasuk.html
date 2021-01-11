@@ -1,0 +1,89 @@
+{%  extends 'userbagum/main.html' %}
+{% load static %}
+{% block content %}
+{% autoescape off %}
+                
+<div class="main-panel">
+	<div class="content-wrapper">
+		<div class="row">
+			<div class="col-md-12 grid-margin stretch-card">
+				<div class="card position-relative">
+					<div class="card-body">
+						<!-- <h4 class="card-title"><span>Hi Mr. {{user.first_name}} {{user.last_name}} </span></h4> -->
+					<div>
+						<h1>Data Surat Masuk</h1>
+					</div>
+					
+						<div class="table-responsive pt-3">
+							<table class="table table-striped">
+								<thead>
+									<tr align="center">
+											<th scope="col">Nomor Surat</th>
+											<th scope="col">Tanggal Surat</th> 
+											<th scope="col">Kategori</th>
+											<th scope="col">Klasifikasi</th>
+											<th scope="col">Pengirim</th>
+											<th scope="col">Tujuan</th>
+											<th scope="col">Perihal</th>
+											<th scope="col">File</th>
+											<th scope="col">Disposisi</th>
+											<th scope="col">Pengaturan Aksi</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr align="center"> 
+											{% for upload in upload_form %}
+											<tr align="center">
+												
+												<td align="left">{{upload.nomor_surat}}</td>
+												<td>{{upload.tanggal_surat}}</td>
+												<td>{{upload.kategori}}</td>
+												<td>{{upload.klasifikasi}}</td>
+												<td>{{upload.pengirim}}</td>
+												<td>{{upload.tujuan}}</td>
+												<td>{{upload.perihal}}</td>
+												<td align="center">
+													<a href="{{ upload.attachment.url }}" target="_blank" title="Unduh Surat">
+														<span class="ti-import"></span>
+													</a>
+												</td>
+												{% if upload.st_dispo == "False" %}
+												<td align="center">
+													<a class="badge badge-warning" href="{% url 'dis' upload.id %}" title="Belum Disposisi" >
+														<span class="ti-na"></span>
+													</a>
+												</td>
+												{% else %}
+												<td align="center">
+													<a class="badge badge-success" href="{% url 'shdis' upload.id %}" title="Sudah Disposisi">
+														<span class="ti-check"></span>
+													</a>
+												</td>
+												{% endif %}
+												<td align="center">
+													<a class="btn  btn-info" href="{% url 'updatekotakmasuk' upload.id %}" title="Ubah Surat">
+													<span class="ti-settings"></span>
+													</a>
+													<a class="btn btn-danger" href="delete/{{upload.id}}" id = '{{upload.id}}' title="Hapus Surat">
+													<span class="ti-trash"></span>
+													</a>
+													<a class="btn  btn-success" href="{% url 'arsipkan' upload.id %}" title="Arsipkan Surat">
+														<span class="ti-bookmark"></span>	
+													</a>
+												</td>																							
+											</tr>
+											{% endfor %}  
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>      
+		</div>
+	</div>
+</div>
+{% endautoescape %}					
+{% endblock %}
+
+ 
+

@@ -1,0 +1,167 @@
+<script>
+  $(function() {
+/* ChartJS
+ * -------
+ * Data and config for chartjs
+ */
+'use strict';
+var data = {
+  labels: ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",""],
+  datasets: [{
+    label: '# Surat',
+    data: [0,2,5,2,5,6,4,8,9,7,2,1,1,0],
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.09)',
+    ],
+    borderColor: [
+      'rgba(232, 116, 97, 1)',
+    ],
+    borderWidth: 1,
+    fill: true
+  }]
+};
+
+var data2 = {
+  labels: ["", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",""],
+  datasets: [{
+    label: '# Surat',
+    data: [0,2,5,2,5,6,4,4,1,7,2,1,1,0],
+    backgroundColor: [
+      'rgba(170, 125, 206, 0.09)',
+    ],
+    borderColor: [
+      'rgba(170, 125, 206, 1)',
+    ],
+    borderWidth: 1,
+    fill: true
+  }]
+};
+
+var options = {
+  scales: { yAxes: [{ ticks: { beginAtZero: true } }] },
+  legend: { display: false },
+  elements: { point: { radius: 3 }
+}};
+
+var options2 = {
+  scales: { yAxes: [{ ticks: { beginAtZero: true } }] },
+  legend: { display: false },
+  elements: { point: { radius: 3 }
+}};
+
+var doughnutPieData = {
+  datasets: [{
+    data: [30, 42, 33 , 40, 30, 21, 2 ,2],
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.5)',
+      'rgba(54, 162, 235, 0.5)',
+      'rgba(255, 206, 86, 0.5)',
+      'rgba(75, 192, 192, 0.5)',
+      'rgba(153, 102, 255, 0.5)',
+      'rgba(255, 159, 64, 0.5)'
+    ],
+    borderColor: [
+      'rgba(255,99,132,1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)'
+    ],
+  }],
+
+  // These labels appear in the legend and in the tooltips when hovering different arcs
+  labels: [
+    'Pink',
+    'Blue',
+    'Yellow',
+  ]
+};
+
+ var doughnutPieData2 = {
+  datasets: [{
+    data: [30, 42, 33 , 40, 30, 21, 2 ,2],
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.5)',
+      'rgba(54, 162, 235, 0.5)',
+      'rgba(255, 206, 86, 0.5)',
+      'rgba(75, 192, 192, 0.5)',
+      'rgba(153, 102, 255, 0.5)',
+      'rgba(255, 159, 64, 0.5)'
+    ],
+    borderColor: [
+      'rgba(255,99,132,1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)'
+    ],
+  }],
+
+  // These labels appear in the legend and in the tooltips when hovering different arcs
+  labels: [
+    'Pink',
+    'Blue',
+    'Yellow',
+  ]
+};
+
+var doughnutPieOptions = {
+  responsive: true,
+  animation: {
+    animateScale: true,
+    animateRotate: true
+  }
+};
+
+var doughnutPieOptions2 = {
+  responsive: true,
+  animation: {
+    animateScale: true,
+    animateRotate: true
+  }
+};
+
+// Get context with jQuery - using jQuery's .get() method.
+if ($("#barChart").length) {
+  var barChartCanvas = $("#barChart").get(0).getContext("2d");
+  // This will get the first returned node in the jQuery collection.
+  var barChart = new Chart(barChartCanvas, {
+    type: 'line',
+    data: data,
+    options: options
+  });
+}
+
+  // Get context with jQuery - using jQuery's .get() method.
+if ($("#barChart2").length) {
+  var barChartCanvas2 = $("#barChart2").get(0).getContext("2d");
+  // This will get the first returned node in the jQuery collection.
+  var barChart2 = new Chart(barChartCanvas2, {
+    type: 'line',
+    data: data2,
+    options: options2
+  });
+}
+
+if ($("#pieChart").length) {
+  var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+  var pieChart = new Chart(pieChartCanvas, {
+    type: 'pie',
+    data: doughnutPieData,
+    options: doughnutPieOptions
+  });
+}
+
+if ($("#pieChart2").length) {
+  var pieChartCanvas2 = $("#pieChart2").get(0).getContext("2d");
+  var pieChart2 = new Chart(pieChartCanvas2, {
+    type: 'pie',
+    data: doughnutPieData2,
+    options: doughnutPieOptions2
+  });
+}
+});
+
+</script>

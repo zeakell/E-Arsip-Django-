@@ -1,0 +1,117 @@
+{%  extends 'userbagum/main.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="main-panel">
+        <div class="content-wrapper">
+            <div class="row">
+            <div class="col-md-12 grid-margin stretch-card">
+                    <div class="card position-relative">
+                        <div class="card-body">
+                            <!-- <h4 class="card-title"><span>Hi Mr. {{user.first_name}} {{user.last_name}} </span></h4> -->
+                            <br>
+                            <div>
+                                <h1 class="title" align="center">Surat Masuk</h1>
+                            </div>
+                            <br>
+                            <!-- <div>
+                                <legend>
+                                <h1 class="title" align="center">Surat Masuk</h1>
+                                </legend>
+                            </div> -->
+                            <form  action="kotakmasuk22" enctype="multipart/form-data" method="POST">
+                                {% csrf_token %}
+                                <div class="container">
+
+                                    <div class="card-body">
+                                        <table class="table table-hover"><tr><td>
+                                        <fieldset>
+
+                                    <br>
+                                    <label for="nomor_surat">Nomor Surat:</label>
+                                    <input type="text" name="nomor_surat" id="nomor_surat" class="form-control" />
+                        
+                                    <br>
+                                    <label>Tanggal:</label>
+                                    <input type="date" name="tanggal_surat" id="tanggal_surat" class="form-control" />
+                                    
+                                    <br>
+                                    <label for="kt">Kategori</label>
+                                    <select class="form-control" name="kategori" required>
+                                        <option value=""></option>
+                                        <option value="Biasa">Biasa</option>
+                                        <option value="Segera">Segera</option>
+                                        <option value="Mendesak">Mendesak</option>
+                                    </select>
+                        
+                                    <br>
+                                    <label for="kl">Klasifikasi</label>
+                                    <select class="form-control" name="klasifikasi" required>
+                                        <option value=""></option>
+                                        <option value="Biasa">Biasa</option>
+                                        <option value="Express">Express</option>
+                                        <option value="Kilat">Kilat</option>
+                                    </select>
+
+                                    <br>        
+                                    <label>Pengirim :</label>
+                                    <input type="text" name="pengirim" id="pengirim" class="form-control"/>
+                                    
+                                        </fieldset>
+                                        </td><td>
+                                        <fieldset>
+
+                                    <br>
+                                    <label for="kl">Tujuan</label>
+                                    <select class="form-control" name="tujuan" required>
+                                        <option value=""></option>
+                                        {% for a in aa %}
+                                            <option value="{{a.nm_pejabat}}">{{a.nm_pejabat}}</option>
+                                        {% endfor %}  
+                                    </select>
+
+                                    <br>       
+                                    <label>Perihal:</label>
+                                    <textarea type="text" name="perihal" rows="3" id="perihal" class="form-control"></textarea>
+
+                                    <br>
+                                    <label>Attachment:</label>
+                                    <input type="file" name="attachment" id="attachment" class="form-control"/>
+
+                                    <input type="hidden" name="st_dispo" value="False">
+                                    <input type="hidden" name="st_arsip" value="False">
+
+                                    <br><br>
+                                    <div align="center">
+                                        <a class="btn btn-danger" href="{% url 'shkotakmasuk' %}" title="Kembali ke halaman sebelumnya">
+                                            <span class="ti-back-left">
+                                                <text>
+                                                    Kembali
+                                                </text>
+                                            </span>
+                                        </a>
+                                        <!-- <a href="{% url 'shkotakmasuk' %}" class="btn btn-danger">kembali </a> -->
+                                        <button type="submit" class="btn btn-success" name="submit" title="Simpan surat masuk">
+                                            <span class="ti-plus">
+                                                <text>
+                                                    Simpan
+                                                </text>
+                                            </span>
+                                        </button>
+                                    </div>
+                                
+                                    </fieldset>
+                                    </td></table>
+                                    </div>
+
+                                    
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

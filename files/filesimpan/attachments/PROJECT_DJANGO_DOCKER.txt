@@ -1,0 +1,17 @@
+#upload create project pada github
+https://www.tutsmake.com/upload-project-files-on-github-using-command-line/
+
+#create django pada docker
+https://dev.to/lewiskori/deploying-a-python-django-application-using-docker-3d09
+
+#secure docker
+https://geekflare.com/securing-docker-for-production/
+
+#setup container docker
+https://learndjango.com/tutorials/django-docker-and-postgresql-tutorial
+
+#setup docker image to docker hub
+https://geekylane.com/how-to-push-docker-image-to-dockerhub/
+
+#solve mysqlclient on ubuntu
+https://github.com/openai/gym/issues/757

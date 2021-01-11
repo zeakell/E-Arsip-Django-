@@ -1,0 +1,125 @@
+{% load static %}
+
+<nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+		<!-- <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+			
+		</div> -->
+		<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+			<!-- <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+				 <span class="ti-view-list"></span>
+			</button> -->
+			<div class="navbar-brand">
+				<img src="{% static 'userbagum/images/170px-Lambang_Pussansiad.png' %}" width="50s" title="Pusat Sandi Dan Siber TNI AD" />
+			</div>
+
+			<ul class="navbar-nav mr-lg-2" >
+
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'homeuser1' %}">
+								<i class="fa fa-home" aria-hidden="true"></i>
+								<span class="menu-title">Dashboard</span>
+							</a>
+						</li>
+						<li class="nav-item nav-profile dropdown">
+							<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+								<i class="fas fa-envelope menu-icon"></i>
+								<span class="menu-title">Disposisi</span>
+							</a>
+						 		<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+								<a class="dropdown-item" href="{% url 'tmbhsurat' %}">
+									<i class="fa fa-plus-square" aria-hidden="true"></i>
+									Daftar Disposisi
+								</a>
+								<a class="dropdown-item"  href="{% url 'shkotakmasuk' %}">
+									<i class="fas fa-envelope menu-icon"></i>
+									Data Disposisi Masuk
+								</a>
+							</div>
+						</li>
+							{% if request.user.is_staff  %}
+						<li class="nav-item nav-profile dropdown">
+							<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+								<i class="fas fa-envelope menu-icon"></i>
+								<span class="menu-title">Surat Masuk</span>
+							</a>
+						 		<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+								<a class="dropdown-item" href="{% url 'tmbhsurat' %}">
+									<i class="fa fa-plus-square" aria-hidden="true"></i>
+									Buat Surat Masuk
+								</a>
+								<a class="dropdown-item"  href="{% url 'shkotakmasuk' %}">
+									<i class="fas fa-envelope menu-icon"></i>
+									Data Surat Masuk
+								</a>
+							</div>
+						</li>
+						<li class="nav-item nav-profile dropdown">
+							<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+								<i class="fas fa-paper-plane menu-icon"></i>
+								<span class="menu-title">Surat Keluar</span>
+							</a>
+						 		<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+								<a class="dropdown-item" href="{% url 'tmbhsuratkeluar' %}">
+									<i class="fa fa-plus-square" aria-hidden="true"></i>
+									Buat Surat Keluar
+								</a>
+								<a class="dropdown-item"  href="{% url 'shkotakkeluar' %}">
+									<i class="fas fa-paper-plane menu-icon"></i>
+									Data Surat Keluar
+								</a>
+							</div>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">
+								<!--<i class="ti-layout-list-post menu-icon"></i>-->
+								<i class="fa fa-file" aria-hidden="true"></i>
+								<span class="menu-title">Korp Raport</span>
+							</a>
+						</li>
+						<li class="nav-item nav-profile dropdown">
+							<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+								<i class="fa fa-folder" aria-hidden="true"></i>
+								<span class="menu-title">Arsip</span>
+							</a>
+						 		<div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+								<a class="dropdown-item" href="{% url 'sharsip' %}">
+									<i class="fa fa-plus-square" aria-hidden="true"></i>
+									Data Surat Masuk
+								</a>
+								<a class="dropdown-item" href="{% url 'k_sharsip' %}">
+									<i class="fas fa-paper-plane menu-icon"></i>
+									Data Surat Keluar
+								</a>
+							</div>
+						</li>
+						{% endif %}
+						
+						
+				<!-- <li class="nav-item nav-search d-none d-lg-block">
+					<div class="input-group">
+						<div class="input-group-prepend hover-cursor" id="navbar-search-icon">
+							<span class="input-group-text" id="search">
+								<i class="ti-search"></i>
+							</span>
+						</div>
+						<input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+					</div>
+				</li> -->
+			</ul>
+			<ul class="navbar-nav navbar-nav-right">
+				<li class="nav-item nav-profile dropdown">
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'keluar' %}">
+								<i class="fa fa-power-off" aria-hidden="true"></i>
+								<span class="menu-title">Logout</span>
+							</a>
+						</li>
+
+				</li>
+			</ul>
+
+		</div>
+	</nav>
+		<!-- partial --> 
+		<div class="container-fluid page-body-wrapper">
+				<!-- partial:partials/_sidebar.html -->

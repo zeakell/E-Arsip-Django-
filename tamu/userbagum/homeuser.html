@@ -1,0 +1,254 @@
+
+  {% load static %}
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>USER | Bagian Umum</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="{% static 'userbagum/vendors/ti-icons/css/themify-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'userbagum/vendors/Font-Awesome-master/css/all.min.css' %}">
+  <link rel="stylesheet" href="{% static 'userbagum/vendors/base/vendor.bundle.base.css' %}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'userbagum/css/style.css' %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static 'userbagum/images/Lambang_TNI_AD.png' %}" />
+</head>
+<body>
+    <div class="container-scroller">
+        <!-- partial:partials/_navbar.html -->
+    {%  include 'userbagum/navbar.html' %}
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                {% autoescape off %}
+                  <h4 class="font-weight-bold mb-0" href="http://www.google.com" >Hi Mr. {{user.first_name}} {{user.last_name}} </h4>
+                {% endautoescape %}
+                </div>
+                <div>
+                  <a href="{% url 'homeuser1_a' %}">
+                   <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
+                      <i class="ti-clipboa rd btn-icon-prepend"></i>Tahun
+                   </button>
+                 </a>
+                 <a href="{% url 'homeuser1' %}">
+                   <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
+                      <i class="ti-clipboa rd btn-icon-prepend"></i>Bulan
+                   </button>
+                 </a>
+                 <a href="{% url 'homeuser1_b' %}">
+                   <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
+                      <i class="ti-clipboa rd btn-icon-prepend"></i>Hari
+                   </button>
+                 </a>
+                </div>
+              </div>
+            </div>
+          </div>
+            <div class="row">
+              <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Grafik Surat Masuk</h4>
+                    <canvas id="barChart"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Grafik Surat Keluar</h4>
+                    <canvas id="barChart2"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Klasifikasi Surat Masuk</h4>
+                    <canvas id="pieChart"></canvas>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6 grid-margin grid-margin-lg-0 stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Klasifikasi Surat Keluar</h4>
+                    <canvas id="pieChart2"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <!-- <footer class="footer">
+          <div class="d-sm-flex justify-content-center justify-content-sm-between py-2">
+            <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a href="https://www.bootstrapdash.com/" target="_blank">bootstrapdash.com </a>2020</span>
+            <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Only the best <a href="https://www.bootstrapdash.com/" target="_blank"> Bootstrap userbagum </a> templates</span>
+          </div>
+        </footer> -->
+      </div>
+  </div>
+</body>
+<!-- plugins:js -->
+<script src="{% static 'userbagum/vendors/base/vendor.bundle.base.js' %}"></script>
+<!-- endinject -->
+<!-- Plugin js for this page-->
+<script src="{% static 'userbagum/vendors/chart.js/Chart.min.js' %}"></script>
+<!-- End plugin js for this page-->
+<!-- inject:js -->
+<script src="{% static 'userbagum/js/off-canvas.js' %}"></script>
+<script src="{% static 'userbagum/js/hoverable-collapse.js' %}"></script>
+<script src="{% static 'userbagum/js/template.js' %}"></script>
+<script src="{% static 'userbagum/js/todolist.js' %}"></script>
+<!-- endinject -->
+<!-- Custom js for this page-->
+<script src="{% static 'userbagum/js/dashboard.js' %}"></script>
+<!-- <script src="{% static 'userbagum/aselole.js' %}"></script> -->
+
+<!-- End custom js for this page-->
+<script>
+  $(function() {
+/* ChartJS
+ * -------
+ * Data and config for chartjs
+ */
+'use strict';
+var data = {
+  labels: {{Jan|safe}},
+  datasets:{{Feb|safe}}
+};
+
+var data2 = {
+  labels: {{Jan|safe}},
+  datasets:{{Mar|safe}}
+};
+
+var options = {
+  scales: { yAxes: [{ ticks: { beginAtZero: true } }] },
+  legend: { display: true },
+  elements: { point: { radius: 3 }
+}};
+
+var options2 = {
+  scales: { yAxes: [{ ticks: { beginAtZero: true } }] },
+  legend: { display: true },
+  elements: { point: { radius: 3 }
+}};
+
+var doughnutPieData = {
+  datasets: [{
+    data: {{Apr1|safe}},
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.5)',
+      'rgba(54, 162, 235, 0.5)',
+      'rgba(255, 206, 86, 0.5)',
+      'rgba(75, 192, 192, 0.5)',
+      'rgba(153, 102, 255, 0.5)',
+      'rgba(255, 159, 64, 0.5)'
+    ],
+    borderColor: [
+      'rgba(255,99,132,1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)'
+    ],
+  }],
+
+  // These labels appear in the legend and in the tooltips when hovering different arcs
+  labels: {{Jan1|safe}}
+};
+
+ var doughnutPieData2 = {
+  datasets: [{
+    data: {{Apr2|safe}},
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.5)',
+      'rgba(54, 162, 235, 0.5)',
+      'rgba(255, 206, 86, 0.5)',
+      'rgba(75, 192, 192, 0.5)',
+      'rgba(153, 102, 255, 0.5)',
+      'rgba(255, 159, 64, 0.5)'
+    ],
+    borderColor: [
+      'rgba(255,99,132,1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)'
+    ],
+  }],
+
+  // These labels appear in the legend and in the tooltips when hovering different arcs
+  labels: {{Jan2|safe}}
+};
+
+var doughnutPieOptions = {
+  responsive: true,
+  animation: {
+    animateScale: true,
+    animateRotate: true
+  }
+};
+
+var doughnutPieOptions2 = {
+  responsive: true,
+  animation: {
+    animateScale: true,
+    animateRotate: true
+  }
+};
+
+// Get context with jQuery - using jQuery's .get() method.
+if ($("#barChart").length) {
+  var barChartCanvas = $("#barChart").get(0).getContext("2d");
+  // This will get the first returned node in the jQuery collection.
+  var barChart = new Chart(barChartCanvas, {
+    type: 'line',
+    data: data,
+    options: options
+  });
+}
+
+  // Get context with jQuery - using jQuery's .get() method.
+if ($("#barChart2").length) {
+  var barChartCanvas2 = $("#barChart2").get(0).getContext("2d");
+  // This will get the first returned node in the jQuery collection.
+  var barChart2 = new Chart(barChartCanvas2, {
+    type: 'line',
+    data: data2,
+    options: options2
+  });
+}
+
+if ($("#pieChart").length) {
+  var pieChartCanvas = $("#pieChart").get(0).getContext("2d");
+  var pieChart = new Chart(pieChartCanvas, {
+    type: 'pie',
+    data: doughnutPieData,
+    options: doughnutPieOptions
+  });
+}
+
+if ($("#pieChart2").length) {
+  var pieChartCanvas2 = $("#pieChart2").get(0).getContext("2d");
+  var pieChart2 = new Chart(pieChartCanvas2, {
+    type: 'pie',
+    data: doughnutPieData2,
+    options: doughnutPieOptions2
+  });
+}
+});
+
+</script>
+</html>

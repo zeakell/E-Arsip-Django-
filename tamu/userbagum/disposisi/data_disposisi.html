@@ -1,0 +1,190 @@
+{%  extends 'userbagum/main.html' %}
+{% load static %}
+
+{% block content %}
+	<div class="main-panel">
+		<div class="content-wrapper">
+			<div class="row">
+			<div class="col-md-12 grid-margin stretch-card">
+					<div class="card position-relative">
+						<div class="card-body">
+							<h4 class="card-title"><span>Hi Mr. {{user.first_name}} {{user.last_name}} </span></h4>
+							<h3 class="title" align="center">Disposisi</h3>
+							<form  enctype="multipart/form-data" method="POST" action="{% url 'dis1' %}">
+								{% csrf_token %}
+								<div class="container">
+									
+									
+
+									<div class="card-body">
+										<table class="table table-hover"><tr><td>
+										<fieldset>
+
+									<br>
+									<label for="nomor_surat">Nomor Disposisi:</label>
+									<input type="text" name="Nomor_Disposisi" id="Nomor_Disposisi" class="form-control" />
+
+									<br>
+									<label for="nomor_surat">Nomor Agenda TU:</label>
+									<input type="text" name="Nomor_Agenda_tu" id="Nomor_Agenda_tu" class="form-control" />
+
+									<br>
+									<label for="nomor_surat">Nomor Surat:</label>
+									<input type="text" name="Nomor" id="Nomor" class="form-control" value="{% for b in bb %} {{b.nomor_surat}} {% endfor %}" readonly="True" /> 
+
+									<input type="hidden" name="Nomor_Surat" id="Nomor_Surat" class="form-control" value="{% for b in bb %} {{b.nomor_surat}} {% endfor %}"/> 
+
+									<input type="hidden" name="idsurat" id="idsurat" class="form-control" value="{{dd}}"/>
+
+									<br>
+									<label for="nomor_surat">Diterima Dari:</label>
+									<input type="text" name="Diterima" id="Diterima" class="form-control" />
+
+										</fieldset>
+										</td><td>
+										<fieldset>
+									
+									<br>
+									<label>Tanggal:</label>
+									<input type="date" name="Tanggal_Surat" id="Tanggal_Surat" class="form-control" />
+
+									<br>
+									<label>Tanggal:</label>{{b.tanggal_surat}}
+									<input type="date" name="Tanggal_Surat_Akhir" id="Tanggal_Surat_Akhir" class="form-control" />
+
+									</fieldset>
+									</td></table>
+									</div>
+
+									<div class="card-body">
+										<table class="table table-hover"><tr><td>
+										<fieldset>
+									
+									<br>
+									<label>Perihal:</label>
+									<textarea type="text" name="Perihall" rows="10" id="Perihall" class="form-control"></textarea>
+
+									</fieldset>
+									</td></table>
+									</div>
+
+									<!-- <label>Kepada Yth</label> -->
+									<div class="card-body">
+										<table class="table table-hover"><legend>Kepada Yth:</legend><tr><td width="100px">
+										<fieldset>
+											
+											<div>
+												<input type="checkbox" name="Bagian" value="KABAGOPSSAN">
+												<label >KABAGOPSSAN</label>
+											</div>
+											<div>
+												<input type="checkbox" name="Bagian" value="KABAGMINSISSAN">
+												<label >KABAGMINSISSAN</label>
+											</div>
+											<div>
+												<input type="checkbox" name="Bagian" value="DANSATKOMSAN">
+												<label >DANSATKOMSAN</label>
+											</div>
+
+										</fieldset>
+										</td><td>
+										<fieldset>
+
+											<div>
+												<input type="checkbox" name="Bagian" value="DANSATPAMSAN">
+												<label >DANSATPAMSAN</label>
+											</div>
+											<div>
+												<input type="checkbox" name="Bagian" value="DANSATLIDSAN">
+												<label >DANSATLIDSAN</label>
+											</div>
+											<div>
+												<input type="checkbox" name="Bagian" value="BATIURMIN">
+												<label >BATIURMIN</label>
+											</div>
+										
+										</fieldset>
+									</td></table>
+									</div>
+
+									<div class="card-body" align="center">
+										<table class="table table-hover" ><legend>DISPOSISI PERSON</legend><tr ><td>
+										<fieldset>
+											
+											{% for a in aa %}
+												{% if forloop.counter0|divisibleby:cc %}
+											<div>
+												<input type="checkbox" name="Dispos" value="{{a.nm_dispo}}">
+												<label >{{a.nm_dispo}}</label>
+											</div>
+										</fieldset>
+										</td>
+												{% else %}
+												<td>
+										<fieldset>
+											<div>
+												<input type="checkbox" name="Dispos" value="{{a.nm_dispo}}">
+												<label >{{a.nm_dispo}}</label>
+											</div>
+												{% endif %}
+											{% endfor %}
+
+										
+										</fieldset>
+									</td></table></div>
+
+									<div class="card-body" align="center">
+										<table class="table table-hover" ><!-- <legend>DISPOSISI PERSON</legend> --><tr ><td>
+										<fieldset>
+									
+									<br>
+									<label>Catatan Disposisi:</label>
+									<textarea name="catatan" rows="8" id="catatan" class="form-control"></textarea>
+									
+									<!-- </fieldset>
+									</td></table></div>
+						
+									<div class="card-body">
+										<table class="table table-hover"> <legend>Kepada Yth:</legend><tr><td>
+										<fieldset> -->
+
+										</fieldset>
+										</td><td>
+										<fieldset>
+
+									<label>Paraf:</label>
+									<input type="file" name="Attachmentt" id="Attachmentt" class="form-control"/>
+
+									<br><br>
+                                    <div align="center">
+                                        <a class="btn btn-danger" href="{% url 'shkotakmasuk' %}" title="Kembali ke halaman sebelumnya">
+                                            <span class="ti-back-left">
+                                                <text>
+                                                    Kembali
+                                                </text>
+                                            </span>
+                                        </a>
+                                        <!-- <a href="{% url 'shkotakmasuk' %}" class="btn btn-danger">kembali </a> -->
+                                        <button type="submit" class="btn btn-success" name="submit" title="Simpan surat masuk">
+                                            <span class="ti-plus">
+                                                <text>
+                                                    Simpan
+                                                </text>
+                                            </span>
+                                        </button>
+                                    </div>
+
+									</fieldset>
+									</td></table>
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+{% endblock %}

@@ -1,0 +1,41 @@
+version: '3'
+services:
+  app:
+    build: . # Current directory!
+    container_name: Earsip
+    volumes:
+      - .:/code
+      - static:/code/static
+      - media:/code/media
+    depends_on:
+      - db
+    expose:
+      - 8000 
+    command: bash -c "python3 manage.py collectstatic --no-input && python3 manage.py makemigrations && python3 manage.py migrate && gunicorn --workers=3 arsip.wsgi -b 0.0.0.0:8000"
+  db:
+    image: mysql:latest
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    volumes:
+      - "mysqldata:/var/lib/mysql"
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret123
+      - MYSQL_DATABASE=earsips
+      - MYSQL_USER=siber
+      - MYSQL_PASSWORD=123qwe
+  nginx:
+    restart: always
+    build: ./nginx/
+    volumes:
+      - ./nginx/:/etc/nginx/conf.d
+      - ./logs/:/code/logs
+      - static:/code/static
+      - media:/code/media
+    ports: 
+      - "80:80"
+    links: 
+      - app
+volumes:
+  mysqldata:
+  media:
+  static:

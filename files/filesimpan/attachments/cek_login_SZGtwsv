@@ -1,0 +1,57 @@
+<?php 
+// mengaktifkan session pada php
+session_start();
+
+// menghubungkan php dengan koneksi database
+require_once("koneksi.php");
+
+// menangkap data yang dikirim dari form login
+$username = $_POST['usern'];
+$password = $_POST['passw'];
+
+$query = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+
+// menyeleksi data user dengan username dan password yang sesuai
+$login = mysqli_query($koneksi,$query);
+// menghitung jumlah data yang ditemukan
+// $cek = mysqli_num_rows($login);
+
+// cek apakah username dan password di temukan pada database
+if($login->num_rows>0){
+	if($data = mysqli_fetch_array($login)){
+		// cek jika user login sebagai admin
+		if($data['level']=="admin"){
+
+			// buat session login dan username
+			$_SESSION['username'] = $username;
+			$_SESSION['id'] = $data['id'];
+			$_SESSION['level'] = "admin";
+			// alihkan ke halaman dashboard admin
+			header("location:dashboard.php");
+
+			// cek jika user login sebagai operator
+		}else if($data['level']=="operator"){
+			// buat session login dan username
+			$_SESSION['username'] = $username;
+			$_SESSION['id'] = $data['id'];
+			$_SESSION['level'] = "operator";
+			// alihkan ke halaman dashboard operator
+			header("location:index-operator.php");
+
+		// cek jika user login sebagai user
+		}else if($data['level']=="user" ){
+			// buat session login dan username
+			$_SESSION['username'] = $username;
+			$_SESSION['id'] = $data['id'];
+			$_SESSION['level'] = "user";
+			// alihkan ke halaman dashboard user
+			header("location:index-user.php");
+		}
+	}
+} else {
+	echo "<div align='center'>Username atau Password Salah! <a href='login.php'>Back</a></div>";
+}
+
+
+
+?>
