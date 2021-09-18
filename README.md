@@ -1,4 +1,4 @@
-# WEB ESISFO by Kevin Harada
+# Web E-Sisfo by Kevin Harada
 aplikasi E-sisfo solusi untuk urusan surat-menyurat pada instansi pemerintahan. aplikasi ini  menggunakan django serta dalam menjalankan webaplikasi ini menggunakan docker.
 yang mana supaya docker dapat berjalan penulis menggunakan sistem operasi linux sebgai sistem operasinya.
 #DISCLAMMER APLIKASI WEB INI DILARANG UNTUK DI PERJUALBELIKAN HANYA UNTUK PEMBELAJARAN SEMATA DI LUAR ITU PENULIS DAN PEMBUAT APLIKASI INI TIDAK BERTANGGUNG JAWAB.!!!
